@@ -28,6 +28,7 @@ export abstract class Note extends Archetype {
         this.sharedMemory.lastActiveTime = -1000
 
         this.targetTime = bpmChanges.at(this.data.beat).time
+        this.data.tap = bpmChanges.at(this.data.tap).time
 
         if (options.mirror) this.data.lane *= -1
     }
