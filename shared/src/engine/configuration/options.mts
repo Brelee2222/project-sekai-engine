@@ -8,6 +8,13 @@ export const optionsDefinition = {
         type: 'toggle',
         def: 0,
     },
+    replay: {
+        name: 'Replay',
+        scope: 'Sekai',
+        standard: true,
+        type: 'toggle',
+        def: 1,
+    },
     speed: {
         name: NameText.LevelSpeed,
         standard: true,

@@ -15,6 +15,8 @@ export abstract class SingleFlickNote extends FlickNote {
     updateSequential() {
         if (options.autoplay) return
 
+        if (options.replay) return
+
         if (time.now < this.inputTime.min) return
 
         if (this.activated) return
@@ -24,6 +26,8 @@ export abstract class SingleFlickNote extends FlickNote {
 
     touch() {
         if (options.autoplay) return
+
+        if (options.replay) return
 
         if (time.now < this.inputTime.min) return
 

@@ -28,6 +28,11 @@ export abstract class SlideTickNote extends Note {
         } else {
             this.result.accuracy = 0.125
         }
+
+        if (options.replay) {
+            this.result.judgment = this.data.tap > this.inputTime ? Judgment.Miss : Judgment.Perfect
+            this.result.accuracy = 0
+        }
     }
 
     touch() {
@@ -45,7 +50,17 @@ export abstract class SlideTickNote extends Note {
 
     updateParallel() {
         if (options.autoplay && time.now >= this.targetTime) this.despawn = true
+        if (options.replay && time.now >= this.data.tap) this.despawn = true
         if (time.now > this.inputTime) this.despawn = true
+    }
+
+    tapComplete() {
+        this.result.judgment = Judgment.Perfect
+        this.result.accuracy = 0
+
+        this.playHitEffects()
+
+        this.despawn = true
     }
 
     complete(touch: Touch) {

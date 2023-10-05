@@ -126,12 +126,25 @@ export abstract class FlatNote extends Note {
         } else {
             this.result.accuracy = this.windows.good.max
         }
+
+        if (options.replay) {
+            this.result.judgment = input.judge(this.data.tap, this.targetTime, this.windows)
+            this.result.accuracy = this.data.tap - this.targetTime
+
+            this.result.bucket.index = this.bucket.index
+            this.result.bucket.value = this.result.accuracy * 1000
+        }
     }
 
     updateParallel() {
         if (options.autoplay && time.now >= this.targetTime) this.despawn = true
         if (time.now > this.inputTime.max) this.despawn = true
         if (this.despawn) return
+
+        if (options.replay && time.now >= this.data.tap) {
+            this.playHitEffects(time.now)
+            this.despawn = true
+        }
 
         if (this.shouldScheduleSFX && !this.hasSFXScheduled && time.now >= this.scheduleSFXTime)
             this.scheduleSFX()

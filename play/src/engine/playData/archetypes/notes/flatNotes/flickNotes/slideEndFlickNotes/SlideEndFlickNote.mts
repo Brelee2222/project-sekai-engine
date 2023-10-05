@@ -46,6 +46,8 @@ export abstract class SlideEndFlickNote extends FlickNote {
     touch() {
         if (options.autoplay) return
 
+        if (options.replay) return
+
         if (time.now < this.inputTime.min) return
 
         if (this.startInfo.state !== EntityState.Despawned) return

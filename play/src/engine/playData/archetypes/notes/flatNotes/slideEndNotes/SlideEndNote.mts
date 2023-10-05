@@ -13,6 +13,8 @@ export abstract class SlideEndNote extends FlatNote {
     updateSequential() {
         if (options.autoplay) return
 
+        if (options.replay) return
+
         if (time.now < this.inputTime.min) return
 
         if (this.startInfo.state !== EntityState.Despawned) return
@@ -28,6 +30,8 @@ export abstract class SlideEndNote extends FlatNote {
 
     touch() {
         if (options.autoplay) return
+
+        if (options.replay) return
 
         if (time.now < this.inputTime.min) return
 

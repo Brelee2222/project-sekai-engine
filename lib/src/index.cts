@@ -25,7 +25,7 @@ export const engineInfo = {
         zht: '世界計畫 繽紛舞台！',
     },
     author: {
-        en: 'Burrito',
+        en: 'Burrito (modified by Brelee2222)',
     },
     description: {
         en: [

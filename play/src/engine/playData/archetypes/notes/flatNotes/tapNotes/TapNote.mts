@@ -9,6 +9,8 @@ export abstract class TapNote extends FlatNote {
     updateSequential() {
         if (options.autoplay) return
 
+        if (options.replay) return
+
         if (time.now < this.inputTime.min) return
 
         claimStart(this.info.index, this.targetTime, this.hitbox, this.fullHitbox)
@@ -16,6 +18,8 @@ export abstract class TapNote extends FlatNote {
 
     touch() {
         if (options.autoplay) return
+
+        if (options.replay) return
 
         if (time.now < this.inputTime.min) return
 

@@ -51,6 +51,7 @@ export abstract class SlideConnector extends Archetype {
         headRef: { name: 'head', type: Number },
         tailRef: { name: 'tail', type: Number },
         ease: { name: 'ease', type: DataType<EaseType> },
+        press: { name: 'press', type: Number },
     })
 
     start = this.entityMemory({

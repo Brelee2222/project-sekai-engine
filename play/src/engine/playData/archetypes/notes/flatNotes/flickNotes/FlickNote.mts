@@ -19,6 +19,7 @@ export abstract class FlickNote extends FlatNote {
 
     flickData = this.defineData({
         direction: { name: 'direction', type: DataType<FlickDirection> },
+        correctdirection: { name: 'correctdirection', type: DataType<boolean> },
     })
 
     arrow = this.entityMemory({
@@ -36,6 +37,11 @@ export abstract class FlickNote extends FlatNote {
 
     initialize() {
         super.initialize()
+
+        if (options.replay && this.result.judgment === Judgment.Perfect)
+            this.result.judgment = this.flickData.correctdirection
+                ? Judgment.Perfect
+                : Judgment.Great
 
         this.arrow.sprite = getArrowSpriteId(
             this.arrowSprites,
