@@ -40,6 +40,8 @@ export abstract class TraceNote extends FlatNote {
     touch() {
         if (options.autoplay) return
 
+        if (options.replay) return
+
         if (time.now < this.inputTime.min) return
 
         for (const touch of touches) {
@@ -58,6 +60,15 @@ export abstract class TraceNote extends FlatNote {
         }
     }
 
+    updateSequential() {
+        super.updateSequential()
+
+        if (time.now >= this.targetTime && this.result.judgment == Judgment.Perfect) {
+            this.playHitEffects(time.now)
+            this.despawn = true
+        }
+    }
+
     complete(touch: Touch) {
         disallowEmpty(touch)
 
@@ -68,10 +79,6 @@ export abstract class TraceNote extends FlatNote {
 
         this.result.bucket.index = this.bucket.index
         this.result.bucket.value = this.result.accuracy * 1000
-
-        this.playHitEffects(time.now)
-
-        this.despawn = true
     }
 
     get useFallbackSprites() {

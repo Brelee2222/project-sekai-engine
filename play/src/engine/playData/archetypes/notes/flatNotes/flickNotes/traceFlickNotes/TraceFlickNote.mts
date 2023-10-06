@@ -36,8 +36,19 @@ export abstract class TraceFlickNote extends FlickNote {
         }
     }
 
+    updateSequential() {
+        super.updateSequential()
+
+        if (time.now >= this.targetTime && this.result.judgment == Judgment.Perfect) {
+            this.playHitEffects(time.now)
+            this.despawn = true
+        }
+    }
+
     touch() {
         if (options.autoplay) return
+
+        if (options.replay) return
 
         if (time.now < this.inputTime.min) return
 
@@ -68,10 +79,6 @@ export abstract class TraceFlickNote extends FlickNote {
 
         this.result.bucket.index = this.bucket.index
         this.result.bucket.value = this.result.accuracy * 1000
-
-        this.playHitEffects(time.now)
-
-        this.despawn = true
     }
 
     get useFallbackSprites() {
