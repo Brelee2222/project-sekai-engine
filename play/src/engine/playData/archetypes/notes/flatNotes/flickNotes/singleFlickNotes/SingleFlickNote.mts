@@ -1,7 +1,7 @@
 import { options } from '../../../../../../configuration/options.mjs'
 import { minFlickVR } from '../../../../../flick.mjs'
 import { windows } from '../../../../../windows.mjs'
-import { claimStart, disallowEmpty, disallowEnd } from '../../../../InputManager.mjs'
+import { disallowEmpty, disallowEnd } from '../../../../InputManager.mjs'
 import { FlickNote } from '../FlickNote.mjs'
 
 export abstract class SingleFlickNote extends FlickNote {
