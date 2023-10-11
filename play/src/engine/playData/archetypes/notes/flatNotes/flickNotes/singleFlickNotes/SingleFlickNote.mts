@@ -7,16 +7,6 @@ import { FlickNote } from '../FlickNote.mjs'
 export abstract class SingleFlickNote extends FlickNote {
     activated = this.entityMemory(Boolean)
 
-    updateSequential() {
-        if (options.autoplay) return
-
-        if (time.now < this.inputTime.min) return
-
-        if (this.activated) return
-
-        claimStart(this.info.index, this.targetTime, this.hitbox, this.fullHitbox)
-    }
-
     touch() {
         if (options.autoplay) return
 
